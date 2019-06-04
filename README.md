@@ -2,7 +2,7 @@
 ## やりかた（インストール）
 - `Ubuntu Server 18.04 LTS (HVM), SSD Volume Type` を立てる
   - t2.micro
-  - EBSは30GB
+  - EBSは最低50GB、できれば60GB
   - ポートはTCP22とTCP27015とUDP27000-27030, UDP4380をあける
     - たぶん
 

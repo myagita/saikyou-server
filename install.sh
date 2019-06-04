@@ -32,11 +32,15 @@ END
 sudo su steam -c "wget https://sm.alliedmods.net/smdrop/1.9/sourcemod-1.9.0-git6281-linux.tar.gz -P /home/steam/Steam/csgo_ds/csgo/"
 sudo su steam -c "tar xvzf /home/steam/Steam/csgo_ds/csgo/sourcemod-1.9.0-git6281-linux.tar.gz -C /home/steam/Steam/csgo_ds/csgo/"
 
+# metamodをインストール
+sudo su steam -c "wget https://mms.alliedmods.net/mmsdrop/1.10/mmsource-1.10.7-git970-linux.tar.gz -P /home/steam/Steam/csgo_ds/csgo/"
+sudo su steam -c "tar xvzf /home/steam/Steam/csgo_ds/csgo/mmsource-1.10.7-git970-linux.tar.gz -C /home/steam/Steam/csgo_ds/csgo/"
+
 # metamod.vdfを作成
 sudo -u steam tee -a /home/steam/Steam/csgo_ds/csgo/addons/metamod.vdf << END
 "Plugin"
 {
-  "file"  "../csgo/addons/metamod/bin/server"
+  "file"  "/home/steam/Steam/csgo_ds/csgo/addons/metamod/bin/server"
 }
 END
 
