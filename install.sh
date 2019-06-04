@@ -3,7 +3,7 @@
 # とりあえずいろいろアップデートしたりSteamインストールに必要ななんかをいれる
 sudo apt-get update -y
 sudo apt-get upgrade -y
-sudo apt-get -y install language-pack-ja lib32gcc1 gdb lib32stdc++6 unzip ruby ruby-bundler ruby-dev build-essential g++
+sudo apt-get -y install language-pack-ja lib32gcc1 gdb lib32stdc++6 unzip ruby ruby-bundler ruby-dev build-essential g++ dnsutils nano
 
 # Steamをインストール
 sudo useradd -m steam
@@ -19,7 +19,9 @@ chmod +x install-csgo-server-launcher.sh
 sudo ./install-csgo-server-launcher.sh
 # 設定変更 /etc/csgo-server-launcher/csgo-server-launcher.conf
 sudo sed -i "s/GSLT=.*/GSLT=\"REALGSLTCOMESHERE\"/"  /etc/csgo-server-launcher/csgo-server-launcher.conf
-sudo sed -i 's/DIR_ROOT=.*/DIR_ROOT=\"\/home\/steam\/Steam\/csgo_ds\"/'  /etc/csgo-server-launcher/csgo-server-launcher.conf
+sudo sed -i 's/DIR_STEAMCMD=.*/DIR_STEAMCMD=\"\/home\/steam\/Steam"/'  /etc/csgo-server-launcher/csgo-server-launcher.conf
+sudo sed -i 's/DIR_ROOT=.*/DIR_ROOT=\"$DIR_STEAMCMD\/csgo_ds\"/'  /etc/csgo-server-launcher/csgo-server-launcher.conf
+
 # 'steam'というアカウントでscreenできるようにする
 sudo -u steam tee -a /home/steam/.bashrc << END
 function screen() {
@@ -27,8 +29,8 @@ function screen() {
 }
 END
 # sourcemodをインストール
-sudo su steam -c "wget https://sm.alliedmods.net/smdrop/1.8/sourcemod-1.8.0-git6041-linux.tar.gz -P /home/steam/Steam/csgo_ds/csgo/"
-sudo su steam -c "tar xvzf /home/steam/Steam/csgo_ds/csgo/sourcemod-1.8.0-git6041-linux.tar.gz -C /home/steam/Steam/csgo_ds/csgo/"
+sudo su steam -c "wget https://sm.alliedmods.net/smdrop/1.9/sourcemod-1.9.0-git6281-linux.tar.gz -P /home/steam/Steam/csgo_ds/csgo/"
+sudo su steam -c "tar xvzf /home/steam/Steam/csgo_ds/csgo/sourcemod-1.9.0-git6281-linux.tar.gz -C /home/steam/Steam/csgo_ds/csgo/"
 
 # metamod.vdfを作成
 sudo -u steam tee -a /home/steam/Steam/csgo_ds/csgo/addons/metamod.vdf << END
